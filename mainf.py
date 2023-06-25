@@ -16,15 +16,17 @@ Class to run the orbital simulation. NOTE THIS FILE CREATES THE MAIN SIMULATION
 class Solar(object):
 
     def __init__(self):
-        #open the file that has all the values, read it and append the values to a list to be used later
+        #open the parameter file that has all the values, read it and append the values to a list to be used later
         parameters = []
         filename = "parameters.py"
         simulation = open(filename)
         #reading from the 3rd line onwards as the above lines are redundant for this project
         y = simulation.readlines()[3:]
         for line in y:
+            #rstrip() to remove trailing characters
             line = line.rstrip()
             #print("line = ", line)
+            #To skip over lines that are comments in the file do the following:
             if line[0] != '#':
                 parameters.append(line)
         #print(parameters)
@@ -55,17 +57,14 @@ class Solar(object):
         for i in range(0, len(self.bodies)):
             self.bodies[i].initialise(self.G, self.bodies[0])
 
-
-
     def init(self):
         # initialiser for animator
         return self.patches
 
-
     def animate(self, i):
         # keep track of time in earth years
         time = (i+1)*self.dt
-        #lit values of orbital periods
+        #literature values of orbital periods
         periods = [0.241,0.616,1,1.05,1.88,11.871]
         # update positions
         for j in range(0, len(self.bodies)):

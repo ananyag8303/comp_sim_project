@@ -24,7 +24,7 @@ class Planet(object):
         # set year to zero
         self.year = 0
         self.G = 1.18638e-4
-        
+        self.vector = []
         
     def initialise(self, G, p):
         '''It begins with setting the initial position of planets with the x coordinate being their 

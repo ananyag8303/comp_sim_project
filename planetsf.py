@@ -2,8 +2,9 @@ import math
 import numpy as np
 from numpy.linalg import norm
 
+
 '''
-Planet class helps make this a n body code because new planets can be added without having to alter the main code
+This is the planet class for the simulation. This will later be imported into the main file 
 '''
 
 
@@ -12,8 +13,7 @@ class Planet(object):
     def __init__(self, name, mass, orbit, colour):
         '''This initializes the class and sets the following attributes for each planet: 
             name, mass, orbital radius, planet colour for the simulation, 
-            starting time at 0 for all planets, gravitational constant 
-            and a list to store the radial vector values'''
+            starting time at 0 for all planets, gravitational constant '''
         self.name = name
         # mass in kg
         self.m = mass
@@ -24,15 +24,14 @@ class Planet(object):
         # set year to zero
         self.year = 0
         self.G = 1.18638e-4
-        self.vector = []
+        
         
     def initialise(self, G, p):
         '''It begins with setting the initial position of planets with the x coordinate being their 
         orbital radius and the y axis coordinate being 0 so they all start from the y axis at the 
         same point in time. Next it sets the position of the Sun to (0,0) so it stays at the center 
-        throughout the simulation. In the same loop, I also linked the velocity values for the satellite 
-        being launched and the other planets needed for the simulation. Another loop in the same method 
-        helps update the acceleration of the planets while keeping the Sun constant through the simulation duration.'''
+        throughout the simulation. In the same loop, the velocity and acceleration values for the satellite being launched and the other
+        planets needed for the simulation have also been linked. '''
         # inital position, initial coords = (orbit radius, 0)
         self.r = np.array([self.orbit, 0])
         # inital velocity, tangential to position
@@ -57,8 +56,7 @@ class Planet(object):
 
     def updatePos(self, G, dt):
         '''This updates the position of the planet according to the Beeman algorithm. 
-        It also make sures to keep the old position vector so as to update the year each time it 
-        crosses the x axis.'''
+        It also make sures to keep the old position vector so as to update the year.'''
         # keep old position to check for year
         self.r_old = self.r
         
@@ -88,7 +86,7 @@ class Planet(object):
     def newYear(self):
         '''The loop updates the time taken to complete one orbit around the Sun. 
         This is done by using a loop to update the year as in when the y axis coordinate of the position vector 
-        is greater than or equal to zero. To sum up it updates the year as in when it crosses the 
+        is greater than or equal to zero. To sum up, it updates the year as in when it crosses the 
         positive side of the x axis ie (orbital radius,0) coordinate'''
         # update the year when the planet passes the +x axis
         if (self.r_old[1] < 0.0 and self.r[1] >= 0.0):

@@ -1,5 +1,5 @@
 ''' main paramter file for the entire project'''
-#note SI units here have been converted into natural units of AU, Solar mass and year. 
+#Note: All quantities here have been expressed in natural units: AU, M⊙, yr
 #number of iterations
 100000
 # timestep (earth yr)
